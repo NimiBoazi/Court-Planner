@@ -1,0 +1,159 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    height: 51px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgb(228, 227, 227);
+    align-items: center;
+    border-bottom: 1px solid #363636;
+    z-index: 102;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 50px;
+}
+
+.profile-button {
+    height: 50px;
+    margin-right: 0;
+    background-color: rgb(228, 227, 227); 
+    border: none; 
+    color: #333; 
+    padding: 0 15px; /* Adjust padding as needed */
+    cursor: pointer;
+    display: flex;
+    justify-content: center; /* Changed this line */
+    align-items: center;
+}
+
+
+.profile-button:focus {
+  outline: none;
+}
+
+.profile-button:hover {
+  background-color: rgb(208, 207, 207); /* Slightly lighter color on hover, adjust as needed */
+}
+
+.profile-logo {
+    height: 45px;
+
+}
+
+.middle-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 160px;
+    margin-left: 500px;
+    position: relative;
+}
+
+.location-button {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+    font-size: 28px;
+    border: none; 
+    cursor: pointer;
+    color: #333; 
+    background-color: rgb(228, 227, 227); 
+    font-family: "Arial";
+}
+
+.location-button:focus {
+  outline: none;
+}
+
+.location-button:hover {
+  background-color: rgb(208, 207, 207); /* Slightly lighter color on hover, adjust as needed */
+}
+
+.location-logo {
+    height: 40px;
+    border: rgb(163, 163, 163);
+    margin-right: auto;
+}
+
+.location-name-button{ 
+    height: 51px;
+    background-color: rgb(228, 227, 227);
+    border: 1px solid #363636;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Arial";
+    font-size: 28px;
+}
+
+.location-name-button:focus {
+  outline: none;
+}
+
+.location-name-button:hover {
+  background-color: rgb(208, 207, 207); /* Slightly lighter color on hover, adjust as needed */
+}
+
+
+.location-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 807px;
+    top: 100%;
+    width: 250px; /* Match width of location-button */
+    z-index: 101;
+}
+
+.calander {
+
+}
+
+.signIn-button {
+  position: absolute;
+  top: 100%; /* Position just below the profile button */
+  margin-top: 2px;
+  right: 0;
+  z-index: 101;
+  height: 51px;
+  width: 250%; /* You can adjust the width as needed */
+  background-color: rgb(228, 227, 227); /* Same as navbar's background color */
+  border-left: 1px solid #363636;
+  border-bottom: 1px solid #363636;
+  border-top: none;
+  border-right: none; /* Remove default border if you wish */
+  color: #333; /* Text color, change as needed */
+  padding: 10px; /* Add some padding */
+  text-align: center;
+  cursor: pointer;
+  font-family: "Arial";
+  font-size: 28px;
+  /* Add other styles to match your navbar's button style */
+}
+
+/* To remove the default styles that come with the <button> tag */
+.signIn-button:focus {
+  outline: none;
+}
+
+.signIn-button:hover {
+  background-color: rgb(208, 207, 207); /* Slightly lighter color on hover, adjust as needed */
+}
+
+
+.profile-menu{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    position: relative;
+}
+

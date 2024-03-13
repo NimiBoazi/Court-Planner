@@ -1,0 +1,26 @@
+.big-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 100px;
+}
+.title-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+
+}
+
+.time-title{
+    font-family: "Arial";
+}
+
+
+.time-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    z-index: 1002;
+}
