@@ -1,7 +1,7 @@
 # Court Planner App for Web
 
 ## Introduction
-The Court Planner app is a public facility schedule planner developed for the web, utilizing React.js for the frontend, with Node.js and Express.js for the backend, and MongoDB for the database. This application allows users to create profiles (note: user profile functionality is currently unsecured) to book time slots for various facilities. The app is designed to store all user profiles, facility locations, and booking data within the database. The project is under development, utilizing a local server and database for testing and development purposes.
+The Court Planner app is a public facility schedule planner developed for the web, utilizing the MERN stack. This application allows users to create profiles (note: user profile functionality is currently unsecured) to book time slots for various facilities. The app is designed to store all user profiles, facility locations, and booking data within the database. The project is under development, utilizing a local server and database for testing and development purposes.
 
 ## Features
 - User authentication: Sign in and create a new user account.
