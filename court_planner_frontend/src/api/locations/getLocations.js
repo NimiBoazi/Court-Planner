@@ -1,4 +1,3 @@
-// Frontend API call in getLocations.js
 import axios from "axios";
 
 const api = axios.create({
@@ -7,7 +6,7 @@ const api = axios.create({
 
 export async function getLocations() {
   try {
-      const response = await api.get("/locations");
+    const response = await api.get("/locations");
     return response.data; // The response data is an array of locations
   } catch (error) {
     console.error("Error during fetching locations:", error.response || error);

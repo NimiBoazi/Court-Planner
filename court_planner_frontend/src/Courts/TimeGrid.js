@@ -14,38 +14,32 @@ import CustomTick from "./CustomTick";
 import { getBookings } from "../api/bookings/getBookings";
 import { orderBooking } from "../api/bookings/orderBooking";
 
-
-
-
 export default class TimeGrid extends PureComponent {
   constructor(props) {
     super(props);
     const { maxCap } = this.props;
+
     this.windowRef = React.createRef();
     this.chartControlsRef = React.createRef();
     this.scrollContainerRef = React.createRef();
-    console.log("");
+    
     if (this.props.openingTime && this.props.closingTime) {
-      // const timeSlots = this.generateTimeSlots(
-      //   this.props.openingTime,
-      //   this.props.closingTime
-      // );
       let selectedDate = new Date();
       //  const updatedData = timeSlots.map((time, index) => ({
       //    name: time,
       //    players: index === timeSlots.length - 1 ? 0 : 10, // Set players to 0 for the last entry, 10 for others
       //  }));
       console.log("Id " + props.locationID);
-      // Initialize default state
+
       this.state = {
-        data: [], // Initialize data as an empty array
+        data: [],
         clickedIndexes: [],
         hoveredIndexes: [],
         message: "",
         clicks: 0,
         maxCap: maxCap,
         visibleBars: 10,
-        numberOfBars: 0, // Initialize numberOfBars to 0
+        numberOfBars: 0,
         chartHeight: 500,
         chartWidth: 2000,
         chartControlsWidth: 700,
@@ -142,24 +136,45 @@ export default class TimeGrid extends PureComponent {
             this.decrementPlayers(updatedData, [this.state.clickedIndexes[0]]);
             this.incrementPlayersInRange(updatedData, ...indexes);
             this.incrementPlayers(updatedData, [...indexes]);
-          }
-          else if (indexes[0] < Math.min(...this.state.clickedIndexes)){
-            this.incrementPlayersInRange(updatedData, indexes[0], Math.min(...this.state.clickedIndexes));
+          } else if (indexes[0] < Math.min(...this.state.clickedIndexes)) {
+            this.incrementPlayersInRange(
+              updatedData,
+              indexes[0],
+              Math.min(...this.state.clickedIndexes)
+            );
             this.incrementPlayers(updatedData, [indexes[0]]);
-          }
-          else if (indexes[0] > Math.min(...this.state.clickedIndexes) && indexes[0] < Math.max(...this.state.clickedIndexes)) {
-            this.decrementPlayersInRange(updatedData, Math.min(...this.state.clickedIndexes), indexes[0]);
-            this.decrementPlayers(updatedData, [Math.min(...this.state.clickedIndexes)]);
-          }
-          else if (indexes[1] > Math.max(...this.state.clickedIndexes)) {
-            this.incrementPlayersInRange(updatedData, Math.max(...this.state.clickedIndexes), indexes[1]);
+          } else if (
+            indexes[0] > Math.min(...this.state.clickedIndexes) &&
+            indexes[0] < Math.max(...this.state.clickedIndexes)
+          ) {
+            this.decrementPlayersInRange(
+              updatedData,
+              Math.min(...this.state.clickedIndexes),
+              indexes[0]
+            );
+            this.decrementPlayers(updatedData, [
+              Math.min(...this.state.clickedIndexes),
+            ]);
+          } else if (indexes[1] > Math.max(...this.state.clickedIndexes)) {
+            this.incrementPlayersInRange(
+              updatedData,
+              Math.max(...this.state.clickedIndexes),
+              indexes[1]
+            );
             this.incrementPlayers(updatedData, [indexes[1]]);
+          } else if (
+            indexes[1] < Math.max(...this.state.clickedIndexes) &&
+            indexes[1] > Math.min(...this.state.clickedIndexes)
+          ) {
+            this.decrementPlayersInRange(
+              updatedData,
+              Math.max(...this.state.clickedIndexes),
+              indexes[1]
+            );
+            this.decrementPlayers(updatedData, [
+              Math.max(...this.state.clickedIndexes),
+            ]);
           }
-          else if (indexes[1] < Math.max(...this.state.clickedIndexes) && indexes[1] > Math.min(...this.state.clickedIndexes)) {
-            this.decrementPlayersInRange(updatedData, Math.max(...this.state.clickedIndexes), indexes[1]);
-            this.decrementPlayers(updatedData, [Math.max(...this.state.clickedIndexes)]);
-          }
-
         } else {
           flag = true;
           message = "invalid time slot";
@@ -268,9 +283,7 @@ export default class TimeGrid extends PureComponent {
 
   incrementPlayers = (updatedData, indices) => {
     indices.forEach((index) => {
-      // Check if the index is within the bounds of the array
       if (index >= 0 && index < updatedData.length) {
-        // Increment the players field of the object at the specified index
         const currentPlayers = updatedData[index].players;
         updatedData[index] = {
           ...updatedData[index],
@@ -281,11 +294,8 @@ export default class TimeGrid extends PureComponent {
   };
 
   decrementPlayers = (updatedData, indices) => {
-    // Step 1: Make a copy of the data array
     indices.forEach((index) => {
-      // Check if the index is within the bounds of the array
       if (index >= 0 && index < updatedData.length) {
-        // Decrement the players field of the object at the specified index
         const currentPlayers = updatedData[index].players;
         updatedData[index] = {
           ...updatedData[index],
@@ -405,15 +415,13 @@ export default class TimeGrid extends PureComponent {
     if (message) {
       setTimeout(() => {
         this.setState({ message: "" });
-      }, 5000); // clear the message after 5 seconds
+      }, 5000);
     }
   };
 
   onHover = (hoveredIndex) => {
-    // Destructure clickedIndexes and hoveredIndexes from state
     const { clickedIndexes } = this.state;
 
-    // If clickedIndexes is empty, don't change anything.
     if (!clickedIndexes.length || this.state.clicks >= 2) return;
 
     const lastIndex = clickedIndexes[clickedIndexes.length - 1];
@@ -435,7 +443,6 @@ export default class TimeGrid extends PureComponent {
 
     newDate.setHours(10, 0, 0, 0);
 
-    // Or pass selectedDate from props/state
     const selectedDate = newDate;
 
     try {
@@ -462,13 +469,11 @@ export default class TimeGrid extends PureComponent {
           numberOfBars: transformedData.length,
         },
         () => {
-          // After state update, update dimensions
           this.updateChartDimensions();
         }
       );
     } catch (error) {
       console.error("Error fetching booking data:", error);
-      // Handle the error appropriately
     }
   };
 
@@ -509,7 +514,7 @@ export default class TimeGrid extends PureComponent {
   handleRightArrowClick = () => {
     const container = this.scrollContainerRef.current;
     if (container) {
-      const scrollAmount = this.state.barSize * 3; // Or any other number of bars you want to scroll
+      const scrollAmount = this.state.barSize * 3;
       container.scrollLeft += scrollAmount;
     }
   };
@@ -517,16 +522,14 @@ export default class TimeGrid extends PureComponent {
   handleLeftArrowClick = () => {
     const container = this.scrollContainerRef.current;
     if (container) {
-      const scrollAmount = this.state.barSize * 3; // Or any other number of bars you want to scroll
+      const scrollAmount = this.state.barSize * 3;
       container.scrollLeft -= scrollAmount;
     }
   };
 
-  // Function to calculate the amount to scroll
   calculateScrollAmount = () => {
-    // This is an example calculation, you might need to adjust this based on your chart's item width
     const itemWidth = this.state.chartWidth / this.state.itemsPerPage;
-    return itemWidth * 10; // Assuming 10 items to skip
+    return itemWidth * 10;
   };
 
   handleSubmitClick = async () => {
@@ -545,11 +548,13 @@ export default class TimeGrid extends PureComponent {
         this.state.user.email
       );
       await minLoadingTime;
-      confirmedBookingDate(this.state.selectedDate , this.state.startTime , this.state.endTime);
+      confirmedBookingDate(
+        this.state.selectedDate,
+        this.state.startTime,
+        this.state.endTime
+      );
       closeTimeGrid();
-      // Handle successful booking here
     } catch (err) {
-      // Handle errors here
       console.error(err);
     } finally {
       this.setState({ isLoading: false });

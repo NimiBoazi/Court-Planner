@@ -6,13 +6,13 @@ import { signIn } from "./api/user/signIn";
 const SignInMenu = ({ closeSignInMenu, navigateToCreateUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useUser(); 
+  const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await signIn({ email, password });
-      setUser({ email: response.email }); // Set the global user
+      setUser({ email: response.email });
       closeSignInMenu();
     } catch (error) {
       console.error("Error during user creation:", error);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import SignInMenu from "./SignInMenu";
 import CreateUserMenu from "./CreateUserMenu";
-import { useUser } from "./UserContext"; // Import useUser hook
+import { useUser } from "./UserContext";
 import { getLocations } from "./api/locations/getLocations";
 const login_logo = require("./icons/login-logo.png");
 const location_logo = require("./icons/location-logo.png");
@@ -14,14 +14,13 @@ const Navbar = ({ onDateChange, onLocationSelect }) => {
   const [ShowCreateUserMenu, setShowCreateUserMenu] = useState(false);
   const [locations, setLocations] = useState([]);
 
-
-  const { user, logout, selectedLocationName } = useUser(); // Use the user from context
+  const { user, logout, selectedLocationName } = useUser();
 
   useEffect(() => {
     const fetchLocations = async () => {
       try {
         const locationData = await getLocations();
-        setLocations(locationData); // Set the fetched locations
+        setLocations(locationData);
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -29,7 +28,6 @@ const Navbar = ({ onDateChange, onLocationSelect }) => {
 
     fetchLocations();
   }, []);
-
 
   const openCreateUserMenu = () => {
     setShowCreateUserMenu(true);
@@ -67,7 +65,7 @@ const Navbar = ({ onDateChange, onLocationSelect }) => {
   const handleLocationClick = (location) => {
     onLocationSelect(location);
     console.log(location._id);
-    setShowLocations(false); // Hide location buttons after selection
+    setShowLocations(false);
   };
 
   return (
@@ -101,21 +99,19 @@ const Navbar = ({ onDateChange, onLocationSelect }) => {
                 alt="profile-logo"
               />
             </button>
-            {
-              isLoginMenuVisible &&
-                (user ? (
-                  <>
-                    <button className="user-email">{user.email}</button>
-                    <button className="logout-button" onClick={logout}>
-                      Log Out
-                    </button>
-                  </>
-                ) : (
-                  <button className="signIn-button" onClick={openSignInMenu}>
-                    Sign In
+            {isLoginMenuVisible &&
+              (user ? (
+                <>
+                  <button className="user-email">{user.email}</button>
+                  <button className="logout-button" onClick={logout}>
+                    Log Out
                   </button>
-                )) // Otherwise show the Sign In button
-            }
+                </>
+              ) : (
+                <button className="signIn-button" onClick={openSignInMenu}>
+                  Sign In
+                </button>
+              ))}
             {ShowSignInMenu && (
               <SignInMenu
                 closeSignInMenu={closeSignInMenu}

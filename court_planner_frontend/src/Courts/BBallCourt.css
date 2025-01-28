@@ -1,27 +1,26 @@
 .court-container {
-    display: flex;
-    margin: 50px;
-    background-color: rgb(149, 107, 51);
-    width: 600px;
+  display: flex;
+  margin: 50px;
+  background-color: rgb(149, 107, 51);
+  width: 600px;
 }
 
 .bball-pic {
-    height: 300px;
-    
+  height: 300px;
 }
 
 .left-join-button {
-    height: 60px;
-    margin-top: 25px;
-    margin-left: -395px;
+  height: 60px;
+  margin-top: 25px;
+  margin-left: -395px;
 }
 
 .right-join-button {
-    height: 60px;
-    margin-top: 25px;
-    margin-left: 140px;
+  height: 60px;
+  margin-top: 25px;
+  margin-left: 140px;
 }
 
 .join-icon {
-    height: 50px;
+  height: 50px;
 }

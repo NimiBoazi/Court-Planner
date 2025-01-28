@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Define the Court schema
 const courtSchema = new mongoose.Schema({
   courtNumber: {
     type: Number,
@@ -24,7 +23,6 @@ const courtSchema = new mongoose.Schema({
   },
 });
 
-// Define the Location schema
 const locationSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -34,10 +32,9 @@ const locationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  courts: [courtSchema], // Array of Court documents
+  courts: [courtSchema],
 });
 
-// Create the model from the schema
 const Location = mongoose.model("Location", locationSchema);
 
 module.exports = Location;

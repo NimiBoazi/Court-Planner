@@ -1,11 +1,18 @@
 import axios from "axios";
 
-
 const api = axios.create({
   baseURL: "http://localhost:3001/api",
 });
 
-export async function orderBooking(date , startTime , endTime , courtNumber , location , maxCap , email) {
+export async function orderBooking(
+  date,
+  startTime,
+  endTime,
+  courtNumber,
+  location,
+  maxCap,
+  email
+) {
   try {
     console.log("date: ", date);
     console.log("startTime: ", startTime);
@@ -25,14 +32,13 @@ export async function orderBooking(date , startTime , endTime , courtNumber , lo
     console.log("1start", startDate);
     const [startHours, startMinutes] = parseTime(startTime);
     console.log("starthours", startHours, "startmin", startMinutes);
-    startDate.setHours(startHours, startMinutes, 0, 0); // Sets hours and minutes for startDate
-
+    startDate.setHours(startHours, startMinutes, 0, 0);
     const endDate = new Date(date);
     const [endHours, endMinutes] = parseTime(endTime);
-    endDate.setHours(endHours, endMinutes, 0, 0); // Sets hours and minutes for endDate
+    endDate.setHours(endHours, endMinutes, 0, 0);
 
-        console.log("startDate: ", startDate);
-        console.log("endDate: ", endDate);
+    console.log("startDate: ", startDate);
+    console.log("endDate: ", endDate);
 
     const reqData = {
       startTime: startDate,
@@ -40,7 +46,7 @@ export async function orderBooking(date , startTime , endTime , courtNumber , lo
       courtNumber,
       location,
       maxCap,
-      email
+      email,
     };
 
     const response = await api.post("/bookings/order", reqData);

@@ -7,14 +7,13 @@ function TimePicker({
   handleTimeSelect,
   defaultStartTime,
   defaultEndTime,
-  handleDateChange
+  handleDateChange,
 }) {
   const [startTime, setStartTime] = useState(defaultStartTime);
   const [endTime, setEndTime] = useState(defaultEndTime);
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    // Directly use the data array without adding an empty string entry
     setOptions(data);
     console.log("hi");
   }, [data]);
@@ -62,7 +61,7 @@ function TimePicker({
   };
 
   const handleDateSelection = (selectedDate) => {
-    handleDateChange(selectedDate); // Call the function passed from App
+    handleDateChange(selectedDate);
   };
 
   return (

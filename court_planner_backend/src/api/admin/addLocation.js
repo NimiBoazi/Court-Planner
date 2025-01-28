@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Location = require("../models/locationModel"); // Adjust the path to your Location model
+const Location = require("../models/locationModel");
 
 mongoose.connect("mongodb://localhost:27017/court_plannerDB", {
   useNewUrlParser: true,

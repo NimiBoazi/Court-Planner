@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const User = require('./userModel');
+const User = require("./userModel");
 
 const bookingSchema = new Schema({
   location: {
     type: Schema.Types.ObjectId,
-    ref: "Location", // Reference to the Location model
+    ref: "Location",
     required: true,
   },
   courtNumber: {
@@ -15,7 +15,7 @@ const bookingSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User", // Reference to the User model
+    ref: "User",
     required: true,
   },
   startTime: {

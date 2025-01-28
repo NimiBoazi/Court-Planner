@@ -12,7 +12,7 @@ const ViewSchedule = ({ closeSignInMenu, navigateToCreateUser }) => {
     e.preventDefault();
     try {
       const response = await signIn({ email, password });
-      setUser({ email: response.email }); // Set the global user
+      setUser({ email: response.email });
       closeSignInMenu();
     } catch (error) {
       console.error("Error during user creation:", error);
